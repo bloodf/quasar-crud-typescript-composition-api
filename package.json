@@ -6,7 +6,8 @@
   "author": "Heitor Ramon Ribeiro <heitor.ramon@gmail.com>",
   "private": true,
   "scripts": {
-    "lint": "eslint --ext .js,.ts,.vue ./",
+    "lint": "eslint --ext .js,.ts,.vue ./src",
+    "lint:fix": "eslint --ext .js,.ts,.vue ./src --fix",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
