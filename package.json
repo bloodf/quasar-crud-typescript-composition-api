@@ -6,13 +6,14 @@
   "author": "Heitor Ramon Ribeiro <heitor.ramon@gmail.com>",
   "private": true,
   "scripts": {
+    "start": "quasar dev",
     "lint": "eslint --ext .js,.ts,.vue ./src",
     "lint:fix": "eslint --ext .js,.ts,.vue ./src --fix",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
     "@quasar/extras": "^1.9.15",
-    "@vue/composition-api": "^0.6.7",
+    "@vue/composition-api": "0.6.6",
     "axios": "^0.21.1",
     "core-js": "^3.8.3",
     "quasar": "^1.15.1"

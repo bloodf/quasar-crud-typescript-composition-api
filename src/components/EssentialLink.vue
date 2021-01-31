@@ -25,7 +25,7 @@
 import { defineComponent } from '@vue/composition-api';
 
 export default defineComponent({
-  name: 'EssentialLink',
+  name: 'EssentialLinks',
   props: {
     title: {
       type: String,

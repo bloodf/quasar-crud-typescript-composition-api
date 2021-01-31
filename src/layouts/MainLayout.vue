@@ -12,7 +12,7 @@
         />
 
         <q-toolbar-title>
-          Quasar App
+          Quasar CRUD - TypeScript
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
@@ -91,6 +91,18 @@ const linksData = [
     caption: 'Community Quasar projects',
     icon: 'favorite',
     link: 'https://awesome.quasar.dev',
+  },
+  {
+    title: 'TypeScript',
+    caption: 'Community Quasar projects',
+    icon: 'devices',
+    link: 'https://www.typescriptlang.org/',
+  },
+  {
+    title: '@vue/composition-api',
+    caption: 'Vue Composition API',
+    icon: 'clear_all',
+    link: 'https://github.com/vuejs/composition-api',
   },
 ];
 
