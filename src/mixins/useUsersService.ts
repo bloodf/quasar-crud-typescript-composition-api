@@ -6,18 +6,24 @@ const UserService = new Users({})
 
 const users = ref<User[]>([]);
 
-export const getAllUsers = async () => {
-  const tmpUsers = await UserService.getAll();
-
-  users.value = [...tmpUsers];
-
-  return tmpUsers;
+export const deleteUser = async (id: string) => {
+  return UserService.delete(id);
 };
 
-export const useUsersService = () => {
+export const getAllUsers = async () => {
+  return UserService.getAll();
+};
+
+export default () => {
   return {
     users,
-    getAllUsers,
+    getAllUsers: async () => {
+      const tmpUsers = await getAllUsers();
+
+      users.value = [...tmpUsers];
+
+      return tmpUsers;
+    },
   };
 };
 

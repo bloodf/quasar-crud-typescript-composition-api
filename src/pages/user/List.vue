@@ -1,29 +1,121 @@
 <template>
   <q-page padding>
-    <!-- content -->
+    <q-table
+      title="Treats"
+      :data="users"
+      :columns="columnsData"
+      :rows-per-page-options="[10, 20, 30, 40, 50, 0]"
+      row-key="name"
+    >
+      <template v-slot:body="props">
+        <q-tr :props="props">
+          <q-td key="name" :props="props">
+            {{ props.row.name }}
+          </q-td>
+          <q-td key="email" :props="props">
+            {{ props.row.email }}
+          </q-td>
+          <q-td key="username" :props="props">
+            {{ props.row.username }}
+          </q-td>
+          <q-td
+            class="text-right"
+          >
+            <q-btn-group
+              outline
+            >
+              <q-btn
+                color="info"
+                icon="visibility"
+              />
+              <q-btn
+                color="positive"
+                icon="create"
+              />
+              <q-btn
+                color="negative"
+                icon="delete"
+                @click="removeUser(props.row.id)"
+              />
+            </q-btn-group>
+          </q-td>
+        </q-tr>
+      </template>
+    </q-table>
   </q-page>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
-import { useUsersService } from 'src/mixins/useUsersService';
-import useApiErrorManager from 'src/mixins/useApiErrorManager';
+import useUsersService from 'src/mixins/useUsersService';
+import useCatchError from 'src/mixins/useCatchError';
+import { UserRouteName } from 'src/enums/routes';
+
+const columnsData = [
+  {
+    align: 'left',
+    field: 'name',
+    label: 'Name',
+    name: 'name',
+    required: true,
+    sortable: true,
+  },
+  {
+    align: 'left',
+    field: 'email',
+    label: 'E-mail',
+    name: 'email',
+    sortable: true,
+  },
+  {
+    align: 'left',
+    field: 'username',
+    label: 'Username',
+    name: 'username',
+    sortable: true,
+  },
+  {
+    align: '',
+    field: '',
+    label: '',
+    name: '',
+    sortable: false,
+  },
+];
 
 export default defineComponent({
   name: 'UserList',
-  setup(){
+  setup() {
+    const { getAllUsers, users } = useUsersService();
+    const { errorNotify } = useCatchError();
+
     return {
-      ...useUsersService(),
-      ...useApiErrorManager(),
+      columnsData,
+      users,
+      getAllUsers,
+      errorNotify,
     }
   },
-  async beforeMount(){
-    try{
+  async beforeMount() {
+    try {
       await this.getAllUsers();
-    } catch (e){
-      this.useApiErrorManager(e);
+    } catch (e) {
+      this.errorNotify(e);
     }
-
-  }
+  },
+  methods: {
+    async removeUser(id: string): Promise<void> {
+      try {
+        await this.$router.push({
+          name: UserRouteName.Remove,
+          params: {
+            id,
+          },
+        });
+      } catch (e) {
+        this.errorNotify(e);
+      }
+    },
+  },
 });
 </script>

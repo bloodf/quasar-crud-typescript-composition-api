@@ -40,7 +40,7 @@ export class Users {
     return data;
   }
 
-  async delete(id: string): Promise<User> {
+  async delete(id: string): Promise<{}> {
     const { data } = await this.axios.delete<User>(`users/${id}`);
 
     return data;

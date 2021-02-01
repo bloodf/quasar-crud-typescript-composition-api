@@ -1,7 +1,7 @@
 import { Notify } from 'quasar';
 
 export default () => {
-  const useApiErrorManager = (error: Error) => {
+  const errorNotify = (error: Error) => {
     Notify.create({
       type: 'negative',
       message: error.message,
@@ -9,6 +9,6 @@ export default () => {
   };
 
   return {
-    useApiErrorManager,
+    errorNotify,
   }
 }
