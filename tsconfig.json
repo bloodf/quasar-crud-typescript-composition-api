@@ -2,9 +2,5 @@
   "extends": "@quasar/app/tsconfig-preset",
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "services": ["src/services/*"],
-      "enums": ["src/enums/*"],
-    }
   }
 }
