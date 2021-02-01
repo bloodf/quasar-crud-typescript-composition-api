@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
     <q-table
-      title="Treats"
+      title="Users"
       :data="users"
       :columns="columnsData"
       :rows-per-page-options="[10, 20, 30, 40, 50, 0]"
