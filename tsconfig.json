@@ -4,6 +4,7 @@
     "baseUrl": ".",
     "paths": {
       "services": ["src/services/*"],
+      "enums": ["src/enums/*"],
     }
   }
 }
