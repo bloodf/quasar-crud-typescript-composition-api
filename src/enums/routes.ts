@@ -7,7 +7,7 @@ export enum UserRouteName {
 }
 
 export enum UserRoutePath {
-  List = '',
+  List = '/user',
   Create = '/register',
   Update = '/update/:id',
   View = '/view/:id',

@@ -1,5 +1,5 @@
 import { RouteConfig } from 'vue-router';
-import { UserRouteName, UserRoutePath } from '../enums/routes';
+import { UserRouteName, UserRoutePath } from 'src/enums/routes';
 
 const routes: RouteConfig[] = [
   {
