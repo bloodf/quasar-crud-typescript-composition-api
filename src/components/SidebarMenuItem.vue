@@ -25,7 +25,7 @@
 import { defineComponent } from '@vue/composition-api';
 
 export default defineComponent({
-  name: 'EssentialLinks',
+  name: 'SidebarMenuItem',
   props: {
     title: {
       type: String,

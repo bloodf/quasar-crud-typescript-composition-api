@@ -30,9 +30,33 @@
           header
           class="text-grey-8"
         >
-          Essential Links
+          Main Menu
         </q-item-label>
-        <EssentialLink
+        <sidebar-internal-menu-item
+          v-for="link in internalLinks"
+          :key="link.title"
+          v-bind="link"
+        />
+        <q-separator />
+        <q-item-label
+          header
+          class="text-grey-8"
+        >
+          Documentation and Languages
+        </q-item-label>
+        <sidebar-menu-item
+          v-for="link in extraLinks"
+          :key="link.title"
+          v-bind="link"
+        />
+        <q-separator />
+        <q-item-label
+          header
+          class="text-grey-8"
+        >
+          Quasar
+        </q-item-label>
+        <sidebar-menu-item
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
@@ -47,15 +71,42 @@
 </template>
 
 <script lang="ts">
-import EssentialLink from 'components/EssentialLink.vue';
+import { defineComponent, ref } from '@vue/composition-api';
+import SidebarMenuItem from 'components/SidebarMenuItem.vue';
+import SidebarInternalMenuItem from 'components/SidebarInternalMenuItem.vue';
+import { UserRouteName } from 'src/enums/routes';
 
-const linksData = [
+const userMenu = [
   {
-    title: 'Docs',
+    title: 'User',
+    caption: 'Manage users',
+    icon: 'supervised_user_circle',
+    to: {
+      name: UserRouteName.List,
+    },
+  },
+];
+const extraData = [
+  {
+    title: 'Quasar Docs',
     caption: 'quasar.dev',
     icon: 'school',
     link: 'https://quasar.dev',
   },
+  {
+    title: 'TypeScript',
+    caption: 'Community Quasar projects',
+    icon: 'devices',
+    link: 'https://www.typescriptlang.org/',
+  },
+  {
+    title: '@vue/composition-api',
+    caption: 'Vue Composition API',
+    icon: 'clear_all',
+    link: 'https://github.com/vuejs/composition-api',
+  },
+];
+const linksData = [
   {
     title: 'Github',
     caption: 'github.com/quasarframework',
@@ -92,30 +143,23 @@ const linksData = [
     icon: 'favorite',
     link: 'https://awesome.quasar.dev',
   },
-  {
-    title: 'TypeScript',
-    caption: 'Community Quasar projects',
-    icon: 'devices',
-    link: 'https://www.typescriptlang.org/',
-  },
-  {
-    title: '@vue/composition-api',
-    caption: 'Vue Composition API',
-    icon: 'clear_all',
-    link: 'https://github.com/vuejs/composition-api',
-  },
 ];
-
-import { defineComponent, ref } from '@vue/composition-api';
 
 export default defineComponent({
   name: 'MainLayout',
-  components: { EssentialLink },
+  components: { SidebarMenuItem, SidebarInternalMenuItem },
   setup() {
     const leftDrawerOpen = ref(false);
     const essentialLinks = ref(linksData);
+    const extraLinks = ref(extraData);
+    const internalLinks = ref(userMenu);
 
-    return { leftDrawerOpen, essentialLinks };
+    return {
+      leftDrawerOpen,
+      essentialLinks,
+      extraLinks,
+      internalLinks,
+    };
   },
 });
 </script>
