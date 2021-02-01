@@ -1,6 +1,9 @@
 <template>
   <q-page class="row items-center justify-evenly">
-    Teste
+    <q-img
+      src="undraw_personal_settings_kihd.svg"
+      width="350px"
+    />
   </q-page>
 </template>
 
