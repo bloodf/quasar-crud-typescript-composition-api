@@ -14,9 +14,7 @@ const { configure } = require('quasar/wrappers');
 module.exports = configure((ctx) => ({
   // https://quasar.dev/quasar-cli/supporting-ts
   supportTS: {
-    tsCheckerConfig: {
-      eslint: false,
-    },
+    tsCheckerConfig: true,
   },
 
   // https://quasar.dev/quasar-cli/prefetch-feature
