@@ -2,30 +2,30 @@ import { User } from 'src/services/models';
 import axios, { AxiosInstance } from 'axios';
 
 export class Users {
-  private axios: AxiosInstance;
+  private repository: AxiosInstance;
 
   constructor({
-                $axios = axios.create({
+                httpRepository = axios.create({
                   baseURL: 'https://jsonplaceholder.typicode.com/',
                 }),
               }) {
-    this.axios = $axios;
+    this.repository = httpRepository;
   }
 
   async getAll(): Promise<User[]> {
-    const { data } = await this.axios.get<User[]>('users');
+    const { data } = await this.repository.get<User[]>('users');
 
     return data;
   }
 
   async get(id: string): Promise<User> {
-    const { data } = await this.axios.get<User>(`users/${id}`);
+    const { data } = await this.repository.get<User>(`users/${id}`);
 
     return data;
   }
 
   async create(user: User): Promise<User> {
-    const { data } = await this.axios.post<User>('users', {
+    const { data } = await this.repository.post<User>('users', {
       ...user,
     });
 
@@ -33,7 +33,7 @@ export class Users {
   }
 
   async update(id: string, user: User): Promise<User> {
-    const { data } = await this.axios.patch<User>(`users/${id}`, {
+    const { data } = await this.repository.patch<User>(`users/${id}`, {
       ...user,
     });
 
@@ -41,7 +41,7 @@ export class Users {
   }
 
   async delete(id: string): Promise<{}> {
-    const { data } = await this.axios.delete<User>(`users/${id}`);
+    const { data } = await this.repository.delete<User>(`users/${id}`);
 
     return data;
   }
