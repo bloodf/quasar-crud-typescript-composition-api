@@ -27,15 +27,17 @@
               <q-btn
                 color="info"
                 icon="visibility"
+                @click="goToViewUser(props.row.id)"
               />
               <q-btn
                 color="positive"
                 icon="create"
+                @click="goToEditUser(props.row.id)"
               />
               <q-btn
                 color="negative"
                 icon="delete"
-                @click="removeUser(props.row.id)"
+                @click="goToRemoveUser(props.row.id)"
               />
             </q-btn-group>
           </q-td>
@@ -50,6 +52,7 @@ import { defineComponent } from '@vue/composition-api';
 import useUsersService from 'src/mixins/useUsersService';
 import useCatchError from 'src/mixins/useCatchError';
 import { UserRouteName } from 'src/enums/routes';
+import userRouterMethods from 'src/mixins/userRouterMethods';
 
 const columnsData = [
   {
@@ -85,6 +88,9 @@ const columnsData = [
 
 export default defineComponent({
   name: 'UserList',
+  mixins: [
+    userRouterMethods,
+  ],
   setup() {
     const { getAllUsers, users } = useUsersService();
     const { errorNotify } = useCatchError();
@@ -102,20 +108,6 @@ export default defineComponent({
     } catch (e) {
       this.errorNotify(e);
     }
-  },
-  methods: {
-    async removeUser(id: string): Promise<void> {
-      try {
-        await this.$router.push({
-          name: UserRouteName.Remove,
-          params: {
-            id,
-          },
-        });
-      } catch (e) {
-        this.errorNotify(e);
-      }
-    },
   },
 });
 </script>
