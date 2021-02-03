@@ -8,8 +8,8 @@ export enum UserRouteName {
 
 export enum UserRoutePath {
   List = '/user',
-  Create = '/register',
-  Update = '/update/:id',
-  View = '/view/:id',
-  Remove = '/remove/:id',
+  Create = 'register',
+  Update = 'update/:id',
+  View = 'view/:id',
+  Remove = 'remove/:id',
 }
