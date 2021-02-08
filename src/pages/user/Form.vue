@@ -10,8 +10,8 @@
       class="q-gutter-md"
     >
       <q-input
-        filled
         v-model="name"
+        filled
         label="Your name *"
         hint="Name and surname"
         lazy-rules
@@ -19,9 +19,9 @@
       />
 
       <q-input
+        v-model="age"
         filled
         type="number"
-        v-model="age"
         label="Your age *"
         lazy-rules
         :rules="[
@@ -30,11 +30,24 @@
         ]"
       />
 
-      <q-toggle v-model="accept" label="I accept the license and terms" />
+      <q-toggle
+        v-model="accept"
+        label="I accept the license and terms"
+      />
 
       <div>
-        <q-btn label="Submit" type="submit" color="primary"/>
-        <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
+        <q-btn
+          label="Submit"
+          type="submit"
+          color="primary"
+        />
+        <q-btn
+          label="Reset"
+          type="reset"
+          color="primary"
+          flat
+          class="q-ml-sm"
+        />
       </div>
     </q-form>
   </q-page>
@@ -45,7 +58,7 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'UserForm',
-  setup(props){
+  setup(props) {
     console.log(props);
   },
 });

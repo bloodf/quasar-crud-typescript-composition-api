@@ -1,5 +1,5 @@
 import { RouteRecordRaw } from 'vue-router';
-import { UserRouteName, UserRoutePath } from 'app/old/src/enums/routes';
+import { UserRouteName, UserRoutePath } from 'src/enums/routes';
 
 const routes: RouteRecordRaw[] = [
   {

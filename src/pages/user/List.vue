@@ -7,15 +7,24 @@
       :rows-per-page-options="[10, 20, 30, 40, 50, 0]"
       row-key="name"
     >
-      <template v-slot:body="props">
+      <template #body="props">
         <q-tr :props="props">
-          <q-td key="name" :props="props">
+          <q-td
+            key="name"
+            :props="props"
+          >
             {{ props.row.name }}
           </q-td>
-          <q-td key="email" :props="props">
+          <q-td
+            key="email"
+            :props="props"
+          >
             {{ props.row.email }}
           </q-td>
-          <q-td key="username" :props="props">
+          <q-td
+            key="username"
+            :props="props"
+          >
             {{ props.row.username }}
           </q-td>
           <q-td
@@ -100,7 +109,7 @@ export default defineComponent({
       users,
       getAllUsers,
       errorNotify,
-    }
+    };
   },
   async beforeMount() {
     try {
