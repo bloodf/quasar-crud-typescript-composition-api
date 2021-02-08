@@ -1,14 +1,12 @@
 import { User } from 'src/services/models';
 import axios, { AxiosInstance } from 'axios';
 
+const baseConfig = { baseURL: 'https://jsonplaceholder.typicode.com/' };
+
 export class Users {
   private repository: AxiosInstance;
 
-  constructor({
-                httpRepository = axios.create({
-                  baseURL: 'https://jsonplaceholder.typicode.com/',
-                }),
-              }) {
+  constructor({ httpRepository = axios.create(baseConfig) }) {
     this.repository = httpRepository;
   }
 
@@ -40,11 +38,9 @@ export class Users {
     return data;
   }
 
-  async delete(id: string): Promise<{}> {
-    const { data } = await this.repository.delete<User>(`users/${id}`);
+  async delete(id: string): Promise<Record<string, unknown>> {
+    const { data } = await this.repository.delete<Record<string, unknown>>(`users/${id}`);
 
     return data;
   }
 }
-
-

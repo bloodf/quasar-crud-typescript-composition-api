@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 import { deleteUser } from 'src/mixins/useUsersService';
 import useCatchError from 'src/mixins/useCatchError';
 import { UserRouteName } from 'src/enums/routes';
@@ -17,7 +17,7 @@ export default defineComponent({
 
     return {
       errorNotify,
-    }
+    };
   },
   async beforeMount() {
     await this.removeUser();
@@ -28,7 +28,7 @@ export default defineComponent({
   methods: {
     async removeUser() {
       try {
-        await deleteUser(this.$route.params.id);
+        await deleteUser(this.$route.params.id as string);
       } catch (e) {
         this.errorNotify(e);
       }

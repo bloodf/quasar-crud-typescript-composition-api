@@ -1,29 +1,22 @@
 import { Users } from 'src/services/Users';
-import { ref } from '@vue/composition-api';
+import { ref } from 'vue';
 import { User } from 'src/services/models';
 
-const UserService = new Users({})
+const UserService = new Users({});
 
 const users = ref<User[]>([]);
 
-export const deleteUser = async (id: string) => {
-  return UserService.delete(id);
-};
+export const deleteUser = async (id: string) => UserService.delete(id);
 
-export const getAllUsers = async () => {
-  return UserService.getAll();
-};
+export const getAllUsers = async () => UserService.getAll();
 
-export default () => {
-  return {
-    users,
-    getAllUsers: async () => {
-      const tmpUsers = await getAllUsers();
+export default () => ({
+  users,
+  getAllUsers: async () => {
+    const tmpUsers = await getAllUsers();
 
-      users.value = [...tmpUsers];
+    users.value = [...tmpUsers];
 
-      return tmpUsers;
-    },
-  };
-};
-
+    return tmpUsers;
+  },
+});

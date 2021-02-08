@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 import useUsersService from 'src/mixins/useUsersService';
 import useCatchError from 'src/mixins/useCatchError';
 import { UserRouteName } from 'src/enums/routes';

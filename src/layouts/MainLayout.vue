@@ -71,10 +71,10 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api';
 import SidebarMenuItem from 'components/SidebarMenuItem.vue';
 import SidebarInternalMenuItem from 'components/SidebarInternalMenuItem.vue';
 import { UserRouteName } from 'src/enums/routes';
+import { defineComponent, ref } from 'vue';
 
 const userMenu = [
   {
@@ -147,7 +147,10 @@ const linksData = [
 
 export default defineComponent({
   name: 'MainLayout',
-  components: { SidebarMenuItem, SidebarInternalMenuItem },
+  components: {
+    SidebarMenuItem,
+    SidebarInternalMenuItem,
+  },
   setup() {
     const leftDrawerOpen = ref(false);
     const essentialLinks = ref(linksData);

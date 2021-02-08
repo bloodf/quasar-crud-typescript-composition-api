@@ -1,13 +1,11 @@
-import { RouteConfig } from 'vue-router';
-import { UserRouteName, UserRoutePath } from 'src/enums/routes';
+import { RouteRecordRaw } from 'vue-router';
+import { UserRouteName, UserRoutePath } from 'app/old/src/enums/routes';
 
-const routes: RouteConfig[] = [
+const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Index.vue') },
-    ],
+    children: [{ path: '', component: () => import('pages/Index.vue') }],
   },
   {
     path: '/user',
@@ -49,11 +47,10 @@ const routes: RouteConfig[] = [
       },
     ],
   },
-
   // Always leave this as last one,
   // but you can also remove it
   {
-    path: '*',
+    path: '/:catchAll(.*)*',
     component: () => import('pages/Error404.vue'),
   },
 ];

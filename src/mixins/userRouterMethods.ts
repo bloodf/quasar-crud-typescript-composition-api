@@ -1,9 +1,9 @@
-import { defineComponent } from '@vue/composition-api';
+import { defineComponent } from 'vue';
 import { UserRouteName } from 'src/enums/routes';
 
 export default defineComponent({
   methods: {
-    async goToEditUser(id: string): Promise<void>{
+    async goToEditUser(id: string): Promise<void> {
       await this.$router.push({
         name: UserRouteName.Update,
         params: {
@@ -11,7 +11,7 @@ export default defineComponent({
         },
       });
     },
-    async goToViewUser(id: string): Promise<void>{
+    async goToViewUser(id: string): Promise<void> {
       await this.$router.push({
         name: UserRouteName.View,
         params: {
@@ -19,7 +19,7 @@ export default defineComponent({
         },
       });
     },
-    async goToRemoveUser(id: string): Promise<void>{
+    async goToRemoveUser(id: string): Promise<void> {
       await this.$router.push({
         name: UserRouteName.Remove,
         params: {
@@ -27,12 +27,12 @@ export default defineComponent({
         },
       });
     },
-    async goToCreateUser(): Promise<void>{
+    async goToCreateUser(): Promise<void> {
       await this.$router.push({
         name: UserRouteName.Create,
       });
     },
-    async goToListUser(): Promise<void>{
+    async goToListUser(): Promise<void> {
       await this.$router.push({
         name: UserRouteName.List,
       });

@@ -5,16 +5,22 @@
 
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
+
 /* eslint-env node */
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint func-names: 0 */
 /* eslint global-require: 0 */
-/* eslint-disable @typescript-eslint/no-var-requires */
 const { configure } = require('quasar/wrappers');
 
-module.exports = configure((ctx) => ({
+module.exports = configure((/* ctx */) => ({
   // https://quasar.dev/quasar-cli/supporting-ts
   supportTS: {
-    tsCheckerConfig: true,
+    tsCheckerConfig: {
+      eslint: {
+        enabled: true,
+        files: './src/**/*.{ts,tsx,js,jsx,vue}',
+      },
+    },
   },
 
   // https://quasar.dev/quasar-cli/prefetch-feature
@@ -24,7 +30,6 @@ module.exports = configure((ctx) => ({
   // --> boot files are part of "main.js"
   // https://quasar.dev/quasar-cli/boot-files
   boot: [
-    'composition-api',
     'axios',
   ],
 
@@ -68,8 +73,11 @@ module.exports = configure((ctx) => ({
     // extractCSS: false,
 
     // https://quasar.dev/quasar-cli/handling-webpack
-    extendWebpack(cfg) {
+    // "chain" is a webpack-chain object https://github.com/neutrinojs/webpack-chain
+    chainWebpack(/* chain */) {
+      //
     },
+
   },
 
   // Full list of options: https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
@@ -81,16 +89,12 @@ module.exports = configure((ctx) => ({
 
   // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
   framework: {
-    iconSet: 'material-icons', // Quasar icon set
-    lang: 'en-us', // Quasar language pack
     config: {},
 
-    // Possible values for "importStrategy":
-    // * 'auto' - (DEFAULT) Auto-import needed Quasar components & directives
-    // * 'all'  - Manually specify what to import
-    importStrategy: 'auto',
+    // iconSet: 'material-icons', // Quasar icon set
+    // lang: 'en-US', // Quasar language pack
 
-    // For special cases outside of where "auto" importStrategy can have an impact
+    // For special cases outside of where the auto-import stategy can have an impact
     // (like functional components as one of the examples),
     // you can manually specify Quasar components/directives to be available everywhere:
     //
