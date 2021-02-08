@@ -2,7 +2,7 @@
   <q-page padding>
     <q-table
       title="Users"
-      :data="users"
+      :rows="users"
       :columns="columnsData"
       :rows-per-page-options="[10, 20, 30, 40, 50, 0]"
       row-key="name"
@@ -60,7 +60,6 @@
 import { defineComponent } from 'vue';
 import useUsersService from 'src/mixins/useUsersService';
 import useCatchError from 'src/mixins/useCatchError';
-import { UserRouteName } from 'src/enums/routes';
 import userRouterMethods from 'src/mixins/userRouterMethods';
 
 const columnsData = [
@@ -111,6 +110,7 @@ export default defineComponent({
       errorNotify,
     };
   },
+
   async beforeMount() {
     try {
       await this.getAllUsers();
