@@ -5,34 +5,34 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { deleteUser } from 'src/mixins/useUsersService';
-import useCatchError from 'src/mixins/useCatchError';
+import { defineComponent, onBeforeMount } from 'vue';
+import useUsersService from 'src/hooks/useUsersService';
+import useCatchError from 'src/hooks/useCatchError';
 import { UserRouteName } from 'src/enums/routes';
+import { useRoute, useRouter } from 'vue-router';
+import useSuccessNotify from 'src/hooks/useSuccessNotify';
 
 export default defineComponent({
   name: 'RemoveUser',
   setup() {
+    const $route = useRoute();
+    const $router = useRouter();
     const { errorNotify } = useCatchError();
+    const { successNotify } = useSuccessNotify();
+    const { deleteUser } = useUsersService();
 
-    return {
-      errorNotify,
-    };
-  },
-  async beforeMount() {
-    await this.removeUser();
-    await this.$router.push({
-      name: UserRouteName.List,
-    });
-  },
-  methods: {
-    async removeUser() {
+    onBeforeMount(async () => {
       try {
-        await deleteUser(this.$route.params.id as string);
+        await deleteUser($route.params.id as string);
+        successNotify('User removed successfully!');
       } catch (e) {
-        this.errorNotify(e);
+        errorNotify(e);
+      } finally {
+        await $router.push({
+          name: UserRouteName.List,
+        });
       }
-    },
+    });
   },
 });
 </script>
