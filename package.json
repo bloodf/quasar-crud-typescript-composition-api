@@ -12,7 +12,7 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
-    "@quasar/extras": "^1.9.17",
+    "@quasar/extras": "^1.10.8",
     "axios": "^0.21.1",
     "core-js": "^3.8.3",
     "quasar": "^2.0.0-beta.3"
